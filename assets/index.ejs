@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Tomp Server</title>
+		<link rel='stylesheet' href='/main.css' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+		<meta name='theme-color' content='#FAFAFA' />
+		<meta name='description' content='Collection of ChromeOS recovery images.' />
+		<meta name='twitter:card' content='summary_large_image' />
+		<meta content='/banner.webp' property='og:image' />
+	</head>
+	<body>
+		<form class='main' action='/tomp/process' method='post'>
+			<h1 class='title'>Tomp Server <span class='version'>v<%=package.version%></span></span></h1>
+			<input autocomplete='off' class='search' type='text' placeholder='Search or enter a web address' name='input' />
+		</form>
+	</body>
+</html>

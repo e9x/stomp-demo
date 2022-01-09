@@ -1,0 +1,35 @@
+{
+	"name": "TooManyProxies Frontend",
+	"description": "Back.",
+	"version": "0.0.1",
+	"homepage": "https://tomp.sys32.dev/",
+	"bugs": {
+		"url": "https://github.com/waterswat/toomanyproxies-frontend/issues",
+		"email": "tomp@sys32.dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/waterswat/toomanyproxies-frontend.git"
+	},
+	"author": {
+		"name": "SystemYA Backend",
+		"email": "backend@sys32.dev",
+		"url": "https://sys32.dev/"
+	},
+	"keywords": [
+		"proxy",
+		"systemya",
+		"sys32"
+	],
+	"license": "GPL-3.0",
+	"type": "module",
+	"main": "index.mjs",
+	"dependencies": {
+		"css-loader": "^6.5.1",
+		"fastify": "^3.25.3",
+		"fastify-static": "^4.5.0",
+		"html-webpack-plugin": "^5.5.0",
+		"mini-css-extract-plugin": "^2.4.6",
+		"webpack": "^5.65.0"
+	}
+}
