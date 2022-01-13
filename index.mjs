@@ -19,7 +19,7 @@ const http = new HTTPServer((req, res) => {
 });
 
 const tompserver = new TOMPServer({
-	url: XORCodec,
+	codec: XORCodec,
 	loglevel: LOG_TRACE, // in prod, use LOG_WARN,
 });
 
