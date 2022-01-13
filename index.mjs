@@ -1,6 +1,6 @@
 import path from 'path';
 import { Server as HTTPServer } from 'http';
-import { Server as TOMPServer, XORWrap } from '../toomanyproxies/Server/index.mjs';
+import { Server as TOMPServer, XORWrap, LOG_TRACE, LOG_WARN } from '../toomanyproxies/Server/index.mjs';
 import { fileURLToPath } from 'node:url';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
@@ -20,7 +20,14 @@ const http = new HTTPServer((req, res) => {
 
 const tompserver = new TOMPServer({
 	url: XORWrap,
+	loglevel: LOG_TRACE, // in prod, use LOG_WARN,
 });
+
+/*tompserver.tomp.log.trace('Trace');
+tompserver.tomp.log.debug('Debug');
+tompserver.tomp.log.info('Info');
+tompserver.tomp.log.warn('Warn');
+tompserver.tomp.log.error('Error');*/
 
 const fastify = new FastifyServer({
 	serverFactory(handler){
