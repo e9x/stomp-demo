@@ -9,8 +9,8 @@
 		<meta name='description' content='Tomp Server' />
 	</head>
 	<body>
-		<form class='main' action='/tomp/process' method='post'>
-			<h1 class='title'>Tomp Server <span class='version'>v<%=package.version%></span></span></h1>
+		<form class='main' action='<%=tompserver.tomp.prefix%>about:/process/' method='post'>
+			<h1 class='title'>Tomp Server <span class='version'>v<%=pkg.version%></span></span></h1>
 			<input autocomplete='off' class='search' type='text' placeholder='Search or enter a web address' name='input' />
 		</form>
 	</body>

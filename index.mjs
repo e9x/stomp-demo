@@ -1,7 +1,6 @@
 import path from 'path';
-import { Server as HTTPServer } from 'http';
-import { Server as TOMPServer, XORCodec, LOG_TRACE, LOG_WARN } from '../toomanyproxies/Server/index.mjs';
 import { fileURLToPath } from 'node:url';
+import { httpserver, tompserver } from './ServerInstance.mjs';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
 import './Compiler.mjs'
@@ -11,16 +10,13 @@ const __dirname = path.dirname(__filename);
 
 var fastify_handler = () => {};
 
-const http = new HTTPServer((req, res) => {
+httpserver.on('request', (req, res) => {
 	if(req.url.startsWith(tompserver.tomp.prefix))tompserver.request(req, res);
 	else fastify_handler(req, res);
-}).on('upgrade', (req, socket, head) => {
-	tomp.upgrade(req, socket, head);
 });
 
-const tompserver = new TOMPServer({
-	codec: XORCodec,
-	loglevel: LOG_TRACE, // in prod, use LOG_WARN,
+httpserver.on('upgrade', (req, socket, head) => {
+	tomp.upgrade(req, socket, head);
 });
 
 /*tompserver.tomp.log.trace('Trace');
@@ -32,7 +28,7 @@ tompserver.tomp.log.error('Error');*/
 const fastify = new FastifyServer({
 	serverFactory(handler){
 		fastify_handler = handler;
-		return http;
+		return httpserver;
 	},
 });
 
