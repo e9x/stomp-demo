@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { httpserver, tompserver } from './ServerInstance.mjs';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
-import './Compiler.mjs'
+export * from './Compiler.mjs'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,12 +18,6 @@ httpserver.on('request', (req, res) => {
 httpserver.on('upgrade', (req, socket, head) => {
 	tomp.upgrade(req, socket, head);
 });
-
-/*tompserver.tomp.log.trace('Trace');
-tompserver.tomp.log.debug('Debug');
-tompserver.tomp.log.info('Info');
-tompserver.tomp.log.warn('Warn');
-tompserver.tomp.log.error('Error');*/
 
 const fastify = new FastifyServer({
 	serverFactory(handler){
