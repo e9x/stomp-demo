@@ -15,7 +15,7 @@ function resolve_url(input){
 	if(input.includes('.') && !input.match(http_s_protocol)){
 		return `http://${input}`;
 	}else if(input.match(whitespace) || !input.match(http_s_protocol)) {
-		return `https://www.google.com/search?q=${encodeURIComponent(input)}`;
+		return `https://www.bing.com/search?q=${encodeURIComponent(input)}`;
 	}else{
 		return input;
 	}
