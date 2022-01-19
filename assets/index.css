@@ -40,3 +40,10 @@ body {
 .main > .title > .version {
 	font-size: 14px;
 }
+
+.main > .error {
+	margin: 10px 0px;
+	color: #F00;
+	filter: drop-shadow(0 0 0.5rem #F00);
+	font-weight: 600;	
+}
