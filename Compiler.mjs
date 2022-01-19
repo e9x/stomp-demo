@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import webpack from "webpack";
 import { fileURLToPath } from 'node:url';
-import { CompilationErrors, CompileCommon } from '../toomanyproxies/WebpackUtil.mjs';
+import { CompilationErrors } from '../toomanyproxies/WebpackUtil.mjs';
 import HtmlWebpackPlugin  from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { tompserver } from './ServerInstance.mjs';
@@ -13,7 +13,8 @@ const __dirname = path.dirname(__filename);
 const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'toomanyproxies', 'package.json')));
 
 const frontend = webpack({
-	...CompileCommon,
+	mode: 'production',
+	devtool: 'source-map',
 	entry: path.join(__dirname, 'assets', 'index.mjs'),
 	context: __dirname,
 	output: {
