@@ -2,7 +2,7 @@ import './index.css';
 
 const form = document.querySelector('.main');
 const input = document.querySelector('.main > input');
-const error_node = document.querySelector('.main > .error');
+const error_node = document.querySelector('.error');
 
 window.tomp.catch(error => {
 	error_node.textContent = error.toString();
