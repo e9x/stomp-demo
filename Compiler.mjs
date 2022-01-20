@@ -28,7 +28,7 @@ function compilation_errors(error, stats = { compilation: { errors: [] } }){
 }
 
 const frontend = webpack({
-	mode: 'production',
+	mode: 'development',
 	devtool: 'source-map',
 	entry: path.join(__dirname, 'assets', 'index.mjs'),
 	context: __dirname,
