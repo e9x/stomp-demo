@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import HtmlWebpackPlugin  from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { tompserver } from './ServerInstance.mjs';
+import { tomp_directory } from './Config.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,6 +42,7 @@ const frontend = webpack({
 			templateParameters: {
 				pkg,
 				tompserver,
+				tomp_directory,
 			},
 		}),
 		new MiniCssExtractPlugin()

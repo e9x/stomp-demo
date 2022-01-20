@@ -1,10 +1,13 @@
 import './index.css';
+import { tomp_config } from '../Config.mjs';
+
+const bootstrapper = new TompBootstrapper(tomp_config);
 
 const form = document.querySelector('.main');
 const input = document.querySelector('.main > input');
 const error_node = document.querySelector('.error');
 
-window.tomp.catch(error => {
+bootstrapper.ready.catch(error => {
 	error_node.textContent = error.toString();
 });
 
@@ -21,11 +24,11 @@ function resolve_url(input){
 	}
 }
 
-form.addEventListener('submit', event => {
+form.addEventListener('submit', async event => {
 	event.preventDefault();
 	
-	window.tomp.then(bootstrapper => {
-		const url = resolve_url(input.value);
-		location.assign(bootstrapper.process(url));
-	});
+	await bootstrapper.ready;
+
+	const url = resolve_url(input.value);
+	location.assign(bootstrapper.process(url));
 });

@@ -1,11 +1,8 @@
-import { Server as TOMPServer, XORCodec, LOG_TRACE, LOG_WARN } from '../toomanyproxies/Server/index.mjs';
+import { Server as TOMPServer } from '../toomanyproxies/Server/index.mjs';
 import { Server as HTTPServer } from 'http';
+import { tompserver_config } from './Config.mjs';
 
-export const tompserver = new TOMPServer({
-	codec: XORCodec,
-	noscript: true,
-	prefix: '/tomp/',
-	loglevel: LOG_TRACE,
-});
+import '../toomanyproxies/Compiler/index.mjs';
 
+export const tompserver = new TOMPServer(tompserver_config);
 export const httpserver = new HTTPServer();
