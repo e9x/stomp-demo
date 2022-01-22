@@ -6,7 +6,7 @@ export const tompserver_config = {
 };
 
 export const tomp_config = {
-	noscript: true,
+	noscript: false,
 	bare: tompserver_config.prefix, // ran on same domain
 	loglevel: LOG_TRACE,
 };
