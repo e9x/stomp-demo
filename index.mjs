@@ -17,7 +17,8 @@ httpserver.on('request', (req, res) => {
 });
 
 httpserver.on('upgrade', (req, socket, head) => {
-	tomp.upgrade(req, socket, head);
+	if(tompserver.route_upgrade(req, socket, head))return;
+	socket.end();
 });
 
 const fastify = new FastifyServer({
