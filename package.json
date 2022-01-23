@@ -2,23 +2,24 @@
 	"name": "TooManyProxies Frontend",
 	"description": "Back.",
 	"version": "0.0.1",
-	"homepage": "https://tomp.sys32.dev/",
+	"homepage": "https://github.com/tomphttp",
 	"bugs": {
-		"url": "https://github.com/waterswat/toomanyproxies-frontend/issues",
+		"url": "https://github.com/tomphttp/toomanyproxies-frontend/issues",
 		"email": "tomp@sys32.dev"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/waterswat/toomanyproxies-frontend.git"
+		"url": "https://github.com/tomphttp/toomanyproxies-frontend.git"
 	},
 	"author": {
-		"name": "SystemYA Backend",
-		"email": "backend@sys32.dev",
-		"url": "https://sys32.dev/"
+		"name": "TOMP Development",
+		"email": "tomp@sys32.dev",
+		"url": "https://github.com/tomphttp"
 	},
 	"keywords": [
 		"proxy",
-		"systemya",
+		"tomp",
+		"tomphttp",
 		"sys32"
 	],
 	"license": "GPL-3.0",
