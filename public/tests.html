@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='utf-8' />
+	</head>
+	<body>
+		<script>
+window.test = function(){
+	console.log(this);
+}
+
+test();
+		</script>
+		<script type='MODULE'>
+console.log(await fetch('.'));
+		</script>
+		<script>
+document.title = 'The test page';
+
+document.write('Hello, World!');
+
+
+const is_test = true;
+		</script>
+		<script>
+if(is_test){
+	fetch(location).then(async res => {
+		const text = await res.text();
+		
+		console.log(res.status, res.headers.get('content-type'), text);
+		
+		let the_lesser_thing = eval('let the_thing = 20; the_thing - 1');
+		
+		if(the_lesser_thing == 19){
+			console.log('Nice');
+			try{
+				window.eval('text');
+				console.error('Bad test');
+			}catch(err){
+				console.error(err.message);
+			}
+		}else{
+			console.error('Bad test', the_lesser_thing);
+		}
+	});
+}else{
+	console.error('Bad test', is_test);
+}
+		</script>
+	</body>
+<html>
