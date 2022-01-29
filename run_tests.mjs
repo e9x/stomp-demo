@@ -1,4 +1,4 @@
-import { TOMP } from '../../toomanyproxies/TOMP.mjs';
+import { TOMP } from '../toomanyproxies/TOMP.mjs';
 import { fileURLToPath } from 'node:url';
 import fsp from 'node:fs/promises';
 import {basename, dirname,join} from 'node:path';
@@ -13,7 +13,7 @@ const tomp = new TOMP({
 
 });
 
-const entries_dir = join(__dirname, 'Entries');
+const entries_dir = join(__dirname, 'public', 'Tests');
 
 const pick = 'Head';
 const base = new URL('https://www.sys32.dev/');
