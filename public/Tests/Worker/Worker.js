@@ -1,0 +1,1 @@
+importScripts('./Directory/Work.js');
