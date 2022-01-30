@@ -4,12 +4,17 @@
 		<meta charset='utf-8' />
 	</head>
 	<body>
-		<img src='https://sys32.dev/favicon.ico' width='200' height='200' class='logo'>
+		<img src='https://sys32.dev/favicon.ico' width='200' height='200' class='logo-src'>
+		<img srcset='https://sys32.dev/favicon.ico?480 480w, https://sys32.dev/favicon.ico?800 800w' width='200' height='200' class='logo-srcset'>
 		<script type='module'>
-const logo = document.querySelector('.logo');
+const logo = document.querySelector('.logo-srcset');
 
-console.log(logo.getAttribute('src'), logo.src);
-console.log(logo.currentSrc);
-		</script>
+console.log(logo.getAttribute('srcset'), logo.srcset);
+console.log('compile current src is', logo.currentSrc);
+
+logo.addEventListener('load', () => {
+	console.log('runtime current src is', logo.currentSrc);
+});
+</script>
 	</body>
 </html>
