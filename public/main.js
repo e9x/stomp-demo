@@ -22,21 +22,18 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "tompserver_config": () => (/* binding */ tompserver_config),
+/* harmony export */   "directory": () => (/* binding */ directory),
 /* harmony export */   "tomp_config": () => (/* binding */ tomp_config),
 /* harmony export */   "tomp_directory": () => (/* binding */ tomp_directory)
 /* harmony export */ });
 /* harmony import */ var _toomanyproxies_Logger_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../toomanyproxies/Logger.mjs */ "../toomanyproxies/Logger.mjs");
 
 
-const tompserver_config = {
-	prefix: '/bare/',
-	tompserver_config: _toomanyproxies_Logger_mjs__WEBPACK_IMPORTED_MODULE_0__.LOG_TRACE,
-};
+const directory = '/bare/';
 
 const tomp_config = {
 	noscript: false,
-	bare: tompserver_config.prefix, // ran on same domain
+	bare: directory, // ran on same domain
 	loglevel: _toomanyproxies_Logger_mjs__WEBPACK_IMPORTED_MODULE_0__.LOG_TRACE,
 };
 

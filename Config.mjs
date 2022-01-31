@@ -1,13 +1,10 @@
-import { LOG_TRACE, LOG_WARN } from '../toomanyproxies/Logger.mjs';
+import { LOG_TRACE } from '../toomanyproxies/Logger.mjs';
 
-export const tompserver_config = {
-	prefix: '/bare/',
-	tompserver_config: LOG_TRACE,
-};
+export const directory = '/bare/';
 
 export const tomp_config = {
 	noscript: false,
-	bare: tompserver_config.prefix, // ran on same domain
+	bare: directory, // ran on same domain
 	loglevel: LOG_TRACE,
 };
 
