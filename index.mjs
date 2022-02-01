@@ -51,7 +51,7 @@ emitter.on('error', errors => {
 });
 
 emitter.on('bulit', () => {
-	console.error('Successfully built TOMP');
+	console.log('Successfully built TOMP');
 });
 
 fastify.listen(80, (error, url) => {
