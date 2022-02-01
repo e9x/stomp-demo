@@ -39,7 +39,6 @@ fastify.register(FastifyStatic, {
 	root: public_dir,
 });
 
-console.log(path.join(public_dir, tomp_directory));
 const builder = new Builder(path.join(public_dir, tomp_directory));
 const emitter = builder.watch();
 
