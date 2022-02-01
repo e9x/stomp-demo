@@ -16,6 +16,8 @@ console.log(id, 'compile current src is', logo.currentSrc);
 logo.addEventListener('load', () => {
 	console.log(id, 'runtime current src is', logo.currentSrc);
 });
+
+console.log(logo.attributes[0]);
 	</script>
 	<script type='module'>
 const logo = document.querySelector('.logo-src');

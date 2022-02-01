@@ -12,6 +12,7 @@
 	</head>
 	<body>
 		<div class='block'></div>
+		<div class='block1'></div>
 		<iframe src class='external' onload='console.log("loaded iframe on top", location.href)''></iframe>
 		<img srcset='https://sys32.dev/bad.png' width='200' height='200' class='logo-srcset'>
 		<script>
@@ -20,6 +21,11 @@ const block = document.querySelector('.block');
 block.style.setProperty('background', 'url("https://sys32.dev/favicon.ico")');
 block.style.background = 'url("https://sys32.dev/favicon.ico?123")';
 
+		</script>
+		<script>
+const block1 = document.querySelector('.block1');
+
+block1.style.cssText = 'background: URL("https://sys32.dev/favicon.ico")';
 		</script>
 		<script>
 const script = document.createElement('script');
