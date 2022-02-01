@@ -1,30 +1,27 @@
-import fs from 'fs';
-import path from 'path';
 import webpack from "webpack";
-import { fileURLToPath } from 'node:url';
 import HtmlWebpackPlugin  from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { tompserver } from './ServerInstance.mjs';
 import { tomp_directory } from './Config.mjs';
+import path from 'path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'toomanyproxies', 'package.json')));
-
-function compilation_errors(error, stats = { compilation: { errors: [] } }){
-	var had_error = false;
+function get_errors(error, stats){
+	const errors = [];
 	
 	if(error){
-		had_error = true;
-		console.error(error);
+		errors.push(error);
 	}
 	
-	for(let error of stats.compilation.errors){
-		console.error(error);
+	if(typeof stats == 'object' && stats !== undefined && stats !== null){
+		for(let error of stats.compilation.errors){
+			errors.push(error);
+		}
 	}
-	
-	return had_error;
+
+	return errors;
 }
 
 const frontend = webpack({
@@ -40,8 +37,6 @@ const frontend = webpack({
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'assets', 'index.ejs'),
 			templateParameters: {
-				pkg,
-				tompserver,
 				tomp_directory,
 			},
 		}),
@@ -60,7 +55,16 @@ const frontend = webpack({
 	},
 });
 
-frontend.watch({}, (...args) => {
-	if (!compilation_errors(...args)) console.log('Successful build of frontend.');
-	else console.error('Failure building frontend.');
+frontend.watch({}, (error, stats) => {
+	const errors = get_errors(error, stats);
+	
+	if(errors.length){
+		for(let error of errors){
+			console.error(error);
+		}
+		
+		console.error('Failure building frontend.');
+	}else{
+		console.log('Successfully built frontend.');
+	}
 });
