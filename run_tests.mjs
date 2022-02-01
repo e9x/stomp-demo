@@ -15,7 +15,7 @@ const tomp = new TOMP({
 
 const entries_dir = join(__dirname, 'public', 'Tests');
 
-const pick = 'Anchor';
+const pick = 'Location';
 const base = new URL('https://www.sys32.dev/');
 
 const fg_red = `\x1b[31m`;
