@@ -6,7 +6,6 @@ import { Server as BareServer } from '../bare-server-node/Server.mjs';
 import { Server as HTTPServer } from 'node:http';
 import { Builder } from '../toomanyproxies/Builder.mjs';
 import { bare_directory, tomp_directory } from './Config.mjs';
-import { staticList } from '../fastify-static-chromium-list/index.mjs';
 import './Builder.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
