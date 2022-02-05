@@ -1,15 +1,16 @@
-import path from 'path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
 import { Server as BareServer } from '../bare-server-node/Server.mjs';
-import { Server as HTTPServer } from 'http';
+import { Server as HTTPServer } from 'node:http';
 import { Builder } from '../toomanyproxies/Builder.mjs';
 import { bare_directory, tomp_directory } from './Config.mjs';
+import { staticList } from '../fastify-static-chromium-list/index.mjs';
 import './Builder.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 const bare = new BareServer(bare_directory);
 const http = new HTTPServer();
@@ -33,13 +34,24 @@ const fastify = new FastifyServer({
 	},
 });
 
-const public_dir = path.join(__dirname, 'public');
+const public_dir = join(__dirname, 'public');
 
 fastify.register(FastifyStatic, {
 	root: public_dir,
+	list: {
+		names: [ 'tests' ],
+		format: 'html',
+		render: (dirs, files) => 
+			'<!DOCTYPE HTML><html><head><meta charset="utf-8" /></head><body>'
+ 			+ '<ul>' + dirs.map(dir => `<li><a href=".${dir.href}">${dir.name}</a></li>`).join('\n  ') + '</ul>'
+			+ '<ul>' + files.map(file => `<li><a href=".${file.href}">${file.name}</a></li>`).join('\n  ') + '</ul>'
+	  		+ '</body></html>',
+	},
 });
 
-const builder = new Builder(path.join(public_dir, tomp_directory));
+// onHasParentDirectory
+
+const builder = new Builder(join(public_dir, tomp_directory));
 const emitter = builder.watch();
 
 emitter.on('error', errors => {
