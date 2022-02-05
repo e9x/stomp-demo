@@ -1,26 +1,24 @@
 <script>
-{
-	const name = 'test';
+const name = 'test';
 
-	const request = indexedDB.open(name, 1.0);
+const request = indexedDB.open(name, 1.0);
+
+request.addEventListener('upgradeneeded', event => {
+
+});
+
+request.addEventListener('success', () => {
+	const { result } = request;
 	
-	request.addEventListener('upgradeneeded', event => {
+	if(!result){
+		console.error('No result');
+		return;
+	}
 	
-	});
+	console.log('Name:', result.name);
 	
-	request.addEventListener('success', () => {
-		const { result } = request;
-		
-		if(!result){
-			console.error('No result');
-			return;
-		}
-		
-		console.log('Name:', result.name);
-		
-		if(name != result.name){
-			throw new Error('Test failure.');
-		}
-	});
-}
+	if(name != result.name){
+		throw new Error('Test failure.');
+	}
+});
 </script>

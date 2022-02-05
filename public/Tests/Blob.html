@@ -6,8 +6,9 @@
 	<body>
 		<script>
 const script = document.createElement('script');
-script.src = URL.createObjectURL(new Blob(['console.log(location);'],{type:'application/javascript'}));
-console.log(script.src);
+const url = URL.createObjectURL(new Blob(['console.log(location);'],{type:'application/javascript'}));
+console.log(url);
+script.src = url;
 document.body.append(script);	
 		</script>
 	</body>

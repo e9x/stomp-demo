@@ -1,0 +1,17 @@
+<script class='script'></script>
+<script>
+const script = document.querySelector('.script');
+
+function get_src(){
+	console.log('Property:', script.src);
+	console.log('Attribute:', script.getAttribute('src'));
+}
+
+script.src = './test.js';
+
+get_src();
+
+script.setAttribute('src', './test.js?set-by-attribute=1');
+
+get_src();
+</script>

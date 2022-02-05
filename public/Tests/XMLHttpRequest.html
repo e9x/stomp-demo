@@ -1,10 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<meta charset='utf-8' />
-	</head>
-	<body>
-		<script>
+<script>
 const http = new XMLHttpRequest();
 
 http.open('GET', '/test.html', false);
@@ -13,6 +7,5 @@ http.setRequestHeader('TEST', '123');
 
 http.send();
 
-console.log(http.responseText);
-		</script>
-</html>
+console.log(http.responseURL, http.responseText);
+</script>

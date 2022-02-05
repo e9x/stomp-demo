@@ -1,0 +1,19 @@
+<img class='image' />
+<script>
+const image = document.querySelector('.image');
+
+function get_src(){
+	console.log('Property:', image.src);
+	// attribute should remain equal to what it was set to
+	// with src, the attribute may not be the same as the property
+	console.log('Attribute:', image.getAttribute('src'));
+}
+
+image.src = './test.ico';
+
+get_src();
+
+image.setAttribute('src', './test.ico?set-by-attribute=1');
+
+get_src();
+</script>
