@@ -1,0 +1,16 @@
+<script>
+function test(){
+	console.log('Functional', this);
+}
+
+const protos = [
+	test.__proto__,
+	test.constructor,
+	Object.getPrototypeOf(test),
+	Reflect.getPrototypeOf(test),
+];
+
+console.log(protos);
+const bound = test.bind({ testing: 1 });
+console.log(bound, bound());
+</script>

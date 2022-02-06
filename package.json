@@ -26,6 +26,7 @@
 	"type": "module",
 	"main": "index.mjs",
 	"dependencies": {
+		"commander": "^9.0.0",
 		"css-loader": "^6.5.1",
 		"fastify": "^3.25.3",
 		"fastify-static": "^4.5.0",

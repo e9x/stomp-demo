@@ -1,21 +1,27 @@
 import { TOMP } from '../toomanyproxies/TOMP.mjs';
 import { fileURLToPath } from 'node:url';
-import fsp from 'node:fs/promises';
-import {basename, dirname,join} from 'node:path';
+import { readFile } from 'node:fs/promises';
+import { cwd } from 'node:process';
+import { resolve, join } from 'node:path';
+import { program, Option } from 'commander';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+program
+.requiredOption('-t, --test <path>', 'Path to an HTML file to test')
+.option('-d, --dont-unwrap', 'If the test will be unwrapped')
+;
 
+program.parse(process.argv);
+
+const options = program.opts();
 
 const tomp = new TOMP({
 	directory: '/',
 	bare: '/',
-
 });
 
-const entries_dir = join(__dirname, 'public', 'Tests');
+options.test = resolve(cwd(), options.test);
+console.log('Using test:', options.test);
 
-const pick = 'Random/Assignment';
 const base = new URL('https://www.sys32.dev/');
 
 const fg_red = `\x1b[31m`;
@@ -34,13 +40,16 @@ function indent(text, amount, char){
 }
 
 void async function(){
-	const html = await fsp.readFile(join(entries_dir, pick + '.html'), 'utf-8');
+	const html = await readFile(options.test, 'utf-8');
 	
 	const rewritten = tomp.html.wrap(html, base);
 	const unrewritten = tomp.html.unwrap(rewritten, base);
 
 	console.log(`${fg_red}${bright}Wrapped ${'/'.repeat(30)}:`, reset);
 	console.log(`${indent(rewritten, 1, '\t')}`, reset);
-	console.log(`${fg_green}${bright}Unwrapped ${'/'.repeat(30)}:`, reset);
-	console.log(`${indent(unrewritten, 1, '\t')}`, reset);
+	
+	if(!options.dontUnwrap){
+		console.log(`${fg_green}${bright}Unwrapped ${'/'.repeat(30)}:`, reset);
+		console.log(`${indent(unrewritten, 1, '\t')}`, reset);
+	}
 }();
