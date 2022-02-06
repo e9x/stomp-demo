@@ -1,4 +1,4 @@
-<img class='image' />
+<img class='image' src='./test.ico?set-by-html=1' />
 <script>
 const image = document.querySelector('.image');
 
@@ -9,7 +9,7 @@ function get_src(){
 	console.log('Attribute:', image.getAttribute('src'));
 }
 
-image.src = './test.ico';
+image.src = './test.ico?set-by-property=1';
 
 get_src();
 
