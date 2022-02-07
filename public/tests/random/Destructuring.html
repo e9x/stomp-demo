@@ -32,12 +32,12 @@
 }
 
 {
-	const { x: [ { e: test }, test1 ] } = { x: [ window, 1 ] };
+	const { x: [ { location: { href: test } }, test1 ] } = { x: [ window, 1 ] };
 	console.log(test, test1);
 }
 
 {
-	const { x: [ { e: test }, test1 ] } = { x: [ window, 1 ] };
+	const { x: [ { location: test }, , test1 ] } = { x: [ window, null, 1 ] };
 	console.log(test, test1);
 }
 
