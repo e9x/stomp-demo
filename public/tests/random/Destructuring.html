@@ -8,12 +8,56 @@
 // [location]=['123']
 // [location,tompc$.access.get(location).hash]
 
-[location,location.hash]=['set', '123'];
+{
+	let obj = {};
+	let test;
+	[obj.test,[test],location.hash] = ['k',['set'], '1253'];
+	console.log(test, obj);
+}
 
-let e;
+{
+	let test;
+	({ location: test } = window);
+	console.log(test);
+}
+
+{
+	const { location: test } = window;
+	console.log(test);
+}
+
+{
+	const { window: { location: test } } = window;
+	console.log(test);
+}
+
+{
+	const { x: [ { e: test }, test1 ] } = { x: [ window, 1 ] };
+	console.log(test, test1);
+}
+
+{
+	const { x: [ { e: test }, test1 ] } = { x: [ window, 1 ] };
+	console.log(test, test1);
+}
+
+{
+	const { x: [ { location } ] } = { x: [ window, 1 ] };
+	console.log(location);
+}
+
+/*let e;
 ({location: e} = window);
 
-({e: window.location} = {e:123});
+let {document,location:e} = window;
+
+({e: window.location, ee: location.href } = {e:123, ee: 5});*/
+
+/*
+const x = 'location';
+let e;
+let set = ({[await x]:e} = window);
+*/
 
 // ({x: [y] = 0} = 1);
 

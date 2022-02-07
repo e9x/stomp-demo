@@ -43,12 +43,12 @@ void async function(){
 	const html = await readFile(options.test, 'utf-8');
 	
 	const rewritten = tomp.html.wrap(html, base);
-	const unrewritten = tomp.html.unwrap(rewritten, base);
-
+	
 	console.log(`${fg_red}${bright}Wrapped ${'/'.repeat(30)}:`, reset);
 	console.log(`${indent(rewritten, 1, '\t')}`, reset);
 	
 	if(!options.dontUnwrap){
+		const unrewritten = tomp.html.unwrap(rewritten, base);
 		console.log(`${fg_green}${bright}Unwrapped ${'/'.repeat(30)}:`, reset);
 		console.log(`${indent(unrewritten, 1, '\t')}`, reset);
 	}
