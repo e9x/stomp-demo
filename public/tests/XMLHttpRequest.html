@@ -1,11 +1,74 @@
 <script>
 const http = new XMLHttpRequest();
 
+const UNSENT = 0;
+const OPENED = 1;
+const HEADERS_RECEIVED = 2;
+const LOADING = 3;
+const DONE = 4;
+	
+const statename = state => {
+	switch(state){
+		case UNSENT:
+			return 'UNSENT';
+		case OPENED:
+			return 'UNSENT';
+		case HEADERS_RECEIVED:
+			return 'HEADERS_RECEIVED';
+		case LOADING:
+			return 'LOADING';
+		case DONE:
+			return 'DONE';
+	}
+};
+
+http.onload = event => {
+	console.group('onload', event, statename(http.readyState));
+
+	console.log(http.response, http.responseXML);
+
+	try{
+		console.log(http.responseText);
+	}catch(error){
+		console.error('Caught', error);
+	}
+
+	console.groupEnd();
+};
+
+http.onloadstart = event => {
+	console.log('loadstart', statename(http.readyState));
+};
+
+http.onloadend = event => {
+	console.log('loadend', statename(http.readyState));
+};
+
+http.onreadystatechange = event => {
+	console.group('readystatechange', event, statename(http.readyState));
+	
+	console.log(http.getAllResponseHeaders(), http.status, http.statusText);
+
+	console.groupEnd();
+};
+
 http.open('GET', '/test.html', false);
 
 http.setRequestHeader('TEST', '123');
 
+try{
+	http.responseType = 'document';
+}catch(error){
+	console.error(error);
+}
+
 http.send();
 
-console.log(http.responseURL, http.responseText);
+console.log(statename(http.readyState));
+
+try{
+	http.setRequestHeader('TEST', '123');
+}catch(error){
+	console.error('Caught', error);
+}
 </script>
