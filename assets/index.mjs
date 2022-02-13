@@ -17,5 +17,5 @@ form.addEventListener('submit', async event => {
 	
 	await boot.ready;
 
-	location.assign(boot.process(search.query(input.value)));
+	location.assign(boot.html(search.query(input.value)));
 });
