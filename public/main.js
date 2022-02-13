@@ -162,36 +162,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const bootstrapper = new TompBootstrapper(_Config_mjs__WEBPACK_IMPORTED_MODULE_1__.tomp_config);
+const boot = new TOMPBoot(_Config_mjs__WEBPACK_IMPORTED_MODULE_1__.tomp_config);
+const search = new TOMPBoot.SearchBuilder('https://searx.ru/search?q=%s');
 
 const form = document.querySelector('.main');
 const input = document.querySelector('.main > input');
 const error_node = document.querySelector('.error');
 
-bootstrapper.ready.catch(error => {
+boot.ready.catch(error => {
 	error_node.textContent = error.toString();
 });
-
-const whitespace = /\s/;
-const http_s_protocol = /^https?:\/\//;
-
-function resolve_url(input){
-	if(input.includes('.') && !input.match(http_s_protocol)){
-		return `http://${input}`;
-	}else if(input.match(whitespace) || !input.match(http_s_protocol)) {
-		return `https://www.google.com/search?q=${encodeURIComponent(input)}`;
-	}else{
-		return input;
-	}
-}
 
 form.addEventListener('submit', async event => {
 	event.preventDefault();
 	
-	await bootstrapper.ready;
+	await boot.ready;
 
-	const url = resolve_url(input.value);
-	location.assign(bootstrapper.process(url));
+	location.assign(boot.process(search.query(input.value)));
 });
 })();
 
