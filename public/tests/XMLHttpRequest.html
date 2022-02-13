@@ -36,6 +36,11 @@ http.onload = event => {
 	console.groupEnd();
 };
 
+http.addEventListener('loadstart', () => {
+	alert('');
+	console.log('load starting');
+});
+
 http.onloadstart = event => {
 	console.log('loadstart', statename(http.readyState));
 };

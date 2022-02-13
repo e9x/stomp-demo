@@ -1,0 +1,18 @@
+<script>
+const http = new XMLHttpRequest();
+
+http.onabort = event => {
+	console.log('Aborted.', event);
+};
+
+http.onload = event => {
+	console.log('Loaded.', event);
+};
+
+http.open('GET', '.', true);
+
+http.send();
+
+http.abort();
+
+</script>
