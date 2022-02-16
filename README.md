@@ -8,6 +8,10 @@ We provide a command-line interface for creating a frontend server.
 
 For more features, specify the `--help` option when running the CLI.
 
+## Wiki
+
+Documentation for tests and other features can be found in [the wiki](https://github.com/tomphttp/toomanyproxies-frontend/wiki).
+
 ### Quickstart
 
 1. Clone the required repositories locally
