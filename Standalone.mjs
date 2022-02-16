@@ -29,6 +29,24 @@ const options = program.opts();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const public_dir = join(__dirname, 'public');
+const builder_folder = join(public_dir, options.tompDirectory);
+const builder = new Builder(builder_folder);
+const emitter = builder.watch();
+console.info('Created builder on folder:', builder_folder);
+
+emitter.on('error', errors => {
+	for(let error of errors){
+		console.error(error);
+	}
+
+	console.error('Failure building TOMP');
+});
+
+emitter.on('bulit', () => {
+	console.log('Successfully built TOMP');
+});
+
 const bare = new BareServer(options.bareDirectory);
 console.info('Created bare server on directory:', options.bareDirectory);
 
@@ -58,16 +76,6 @@ if(options.tls){
 
 let fastify_handler = () => {};
 
-http.on('request', (req, res) => {
-	if(bare.route_request(req, res))return;
-	fastify_handler(req, res);
-});
-
-http.on('upgrade', (req, socket, head) => {
-	if(bare.route_upgrade(req, socket, head))return;
-	socket.end();
-});
-
 const fastify = new FastifyServer({
 	serverFactory(handler){
 		fastify_handler = handler;
@@ -75,25 +83,7 @@ const fastify = new FastifyServer({
 	},
 });
 
-if(options.port === default_port){
-	if(options.tls){
-		options.port = 443;
-	}else{
-		options.port = 80;
-	}
-}
-
-http.on('listening', () => {
-	console.log(`HTTP server listening. View live at ${options.tls ? 'https:' : 'http:'}//${options.host}:${options.port}`);
-});
-
-http.listen({
-	host: options.host,
-	port: options.port,
-});
-
-const public_dir = join(__dirname, 'public');
-
+console.log(public_dir);
 fastify.register(FastifyStatic, {
 	root: public_dir,
 	list: {
@@ -107,19 +97,28 @@ fastify.register(FastifyStatic, {
 	},
 });
 
-const builder_folder = join(public_dir, options.tompDirectory);
-const builder = new Builder(builder_folder);
-const emitter = builder.watch();
-console.info('Created builder on folder:', builder_folder);
-
-emitter.on('error', errors => {
-	for(let error of errors){
-		console.error(error);
-	}
-
-	console.error('Failure building TOMP');
+http.on('request', (req, res) => {
+	if(bare.route_request(req, res))return;
+	fastify_handler(req, res);
 });
 
-emitter.on('bulit', () => {
-	console.log('Successfully built TOMP');
+http.on('upgrade', (req, socket, head) => {
+	if(bare.route_upgrade(req, socket, head))return;
+	socket.end();
+});
+
+if(options.port === default_port){
+	if(options.tls){
+		options.port = 443;
+	}else{
+		options.port = 80;
+	}
+}
+
+fastify.listen(options.port, options.host, (error, url) => {
+	if(error){
+		throw error;
+	}
+
+	console.log('HTTP server listening. View live at', url);
 });
