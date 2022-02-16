@@ -91,7 +91,7 @@ fastify.register(FastifyStatic, {
 		format: 'html',
 		render: (dirs, files) => 
 			'<!DOCTYPE HTML><html><head><meta charset="utf-8" /></head><body>'
- 			+ '<ul>' + dirs.map(dir => `<li><a href=".${dir.href}">${dir.name}</a></li>`).join('\n  ') + '</ul>'
+ 			+ '<ul>' + dirs.map(dir => `<li><a href=".${dir.href}/">${dir.name}</a></li>`).join('\n  ') + '</ul>'
 			+ '<ul>' + files.map(file => `<li><a href=".${file.href}">${file.name}</a></li>`).join('\n  ') + '</ul>'
 	  		+ '</body></html>',
 	},
