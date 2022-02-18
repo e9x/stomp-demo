@@ -89,11 +89,29 @@ fastify.register(FastifyStatic, {
 	list: {
 		names: [ 'tests' ],
 		format: 'html',
-		render: (dirs, files) => 
-			'<!DOCTYPE HTML><html><head><meta charset="utf-8" /></head><body>'
- 			+ '<ul>' + dirs.map(dir => `<li><a href=".${dir.href}/">${dir.name}</a></li>`).join('\n  ') + '</ul>'
-			+ '<ul>' + files.map(file => `<li><a href=".${file.href}">${file.name}</a></li>`).join('\n  ') + '</ul>'
-	  		+ '</body></html>',
+		render: (dirs, files) =>
+`<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Directory Listing</title>
+		</head>
+	<body>
+		<h1>Directory Listing</h1>
+		<hr />
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				${dirs.map(file => '<tr><td><a href=' + JSON.stringify('.' + file.href + '/') + '>' + file.name + '/</a></td></tr>').join('\n  ')}
+				${files.map(file => '<tr><td><a href=' + JSON.stringify('.' + file.href) + '>' + file.name + '</a></td></tr>').join('\n  ')}
+			</tbody>
+		</table>
+	</body>
+</html>`,
 	},
 });
 
