@@ -13,10 +13,11 @@ import './Builder.mjs';
 const default_port = Symbol();
 
 program
-.addOption(new Option('-bd, --bare-directory <URL>', 'Bare URL directory.').default('/bare/'))
-.addOption(new Option('-td, --tomp-directory <URL>', 'TOMP directory.').default('/tomp/'))
-.addOption(new Option('-h, --host <string>', 'Hostname to listen on').default('localhost').env('PORT'))
-.addOption(new Option('-p, --port <number>', 'Port to listen on').default(default_port).env('PORT'))
+.addOption(new Option('--bd, --bare-directory <URL>', 'Bare URL directory.').default('/bare/'))
+.addOption(new Option('--td, --tomp-directory <URL>', 'TOMP directory.').default('/tomp/'))
+.addOption(new Option('--h, --host <string>', 'Hostname to listen on').default('localhost').env('PORT'))
+.addOption(new Option('--p, --port <number>', 'Port to listen on').default(default_port).env('PORT'))
+.addOption(new Option('--e, --error', 'Error logging').default(false))
 .addOption(new Option('--tls', 'use HTTPS (TLS/SSL)'))
 .addOption(new Option('--cert <string>', 'certificate for TLS').default(''))
 .addOption(new Option('--key <string>', 'key for TLS').default(''))
@@ -47,8 +48,9 @@ emitter.on('bulit', () => {
 	console.log('Successfully built TOMP');
 });
 
-const bare = new BareServer(options.bareDirectory);
-console.info('Created bare server on directory:', options.bareDirectory);
+const bare = new BareServer(options.bareDirectory, options.error);
+console.info('Created Bare Server on directory:', options.bareDirectory);
+console.info('Error logging is', options.error ? 'enabled.' : 'disabled.');
 
 let http;
 
