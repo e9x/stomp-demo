@@ -43,7 +43,7 @@ cd toomanyproxies-frontend
 
 4. Start the server
 ```sh
-node ./server.mjs --port 80 --host localhost
+node ./app.mjs --port 80 --host localhost
 ```
 
 ### TLS
@@ -60,5 +60,5 @@ openssl x509 -req -days 9999 -in tls/csr.pem -signkey tls/key.pem -out tls/cert.
 
 2. Start the server
 ```sh
-node ./server.mjs --port 443 --host localhost --tls --cert tls/cert.pem --key tls/key.pem
+node ./app.mjs --port 443 --host localhost --tls --cert tls/cert.pem --key tls/key.pem
 ```
