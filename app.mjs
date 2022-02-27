@@ -58,7 +58,6 @@ const fastify = new FastifyServer({
 	},
 });
 
-console.log(public_dir);
 fastify.register(FastifyStatic, {
 	root: public_dir,
 	list: {
