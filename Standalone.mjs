@@ -7,7 +7,6 @@ import { Server as BareServer } from '../bare-server-node/Server.mjs';
 import { Server as HTTPServer } from 'node:http';
 import { Server as TLSHTTPServer } from 'node:https';
 import { Builder } from '../toomanyproxies/Builder.mjs';
-import { bare_directory, tomp_directory } from './Config.mjs';
 import './Builder.mjs';
 
 const default_port = Symbol();

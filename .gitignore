@@ -3,3 +3,4 @@
 /.vscode/
 /public/tomp/*.js*
 /tls/
+/public/tests/

@@ -32,14 +32,9 @@ __webpack_require__.r(__webpack_exports__);
 const bare_directory = '/bare/';
 const tomp_directory = '/tomp/';
 
-const debug = true;
-
 const tomp_config = {
 	noscript: false,
-	bare: debug
-		? 'http://localhost:8001/bare/'
-		: bare_directory
-	, // ran on same domain
+	bare: bare_directory, // ran on same domain
 	loglevel: _toomanyproxies_Logger_mjs__WEBPACK_IMPORTED_MODULE_0__.LOG_TRACE,
 };
 
