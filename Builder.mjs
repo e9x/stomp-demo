@@ -1,70 +1,94 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin  from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { tomp_directory } from './Config.mjs';
-import path from 'path';
+import { dirname, join } from 'path';
 import { fileURLToPath } from 'node:url';
+import Events from 'node:events';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
-function get_errors(error, stats){
-	const errors = [];
-	
-	if(error){
-		errors.push(error);
-	}
-	
-	if(typeof stats == 'object' && stats !== undefined && stats !== null){
-		for(let error of stats.compilation.errors){
+export default class Builder {
+	get_errors(error, stats){
+		const errors = [];
+		
+		if(error){
 			errors.push(error);
 		}
+		
+		if(typeof stats == 'object' && stats !== undefined && stats !== null){
+			for(let error of stats.compilation.errors){
+				errors.push(error);
+			}
+		}
+
+		return errors;
 	}
-
-	return errors;
-}
-
-const frontend = webpack({
-	mode: 'development',
-	devtool: 'source-map',
-	entry: path.join(__dirname, 'assets', 'index.mjs'),
-	context: __dirname,
-	output: {
-		path: path.resolve(__dirname, 'public'),
-		filename: 'main.js',
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'assets', 'index.ejs'),
-			templateParameters: {
-				tomp_directory,
+	constructor(output, bare, tomp){
+		this.webpack = webpack({
+			mode: 'development',
+			devtool: 'source-map',
+			entry: join(__dirname, 'assets', 'index.mjs'),
+			context: __dirname,
+			output: {
+				path: output,
+				filename: 'main.js',
 			},
-		}),
-		new MiniCssExtractPlugin()
-	],
-	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
+			plugins: [
+				new webpack.DefinePlugin({
+					BARE_DIRECTORY: JSON.stringify(bare),
+					TOMP_DIRECTORY: JSON.stringify(tomp),
+				}),
+				new HtmlWebpackPlugin({
+					template: join(__dirname, 'assets', 'index.ejs'),
+				}),
+				new MiniCssExtractPlugin()
+			],
+			module: {
+				rules: [
+					{
+						test: /\.css$/,
+						use: [
+							MiniCssExtractPlugin.loader,
+							'css-loader',
+						],
+					},
 				],
 			},
-		],
-	},
-});
-
-frontend.watch({}, (error, stats) => {
-	const errors = get_errors(error, stats);
-	
-	if(errors.length){
-		for(let error of errors){
-			console.error(error);
-		}
-		
-		console.error('Failure building frontend.');
-	}else{
-		console.log('Successfully built frontend.');
+		});
 	}
-});
+	build(){
+		return new Promise((resolve, reject) => {
+			this.webpack.run((error, stats) => {
+				const errors = this.get_errors(error, stats);
+	
+				if(errors.length){
+					reject(errors);
+				}else{
+					resolve();
+				}
+			});
+		});
+	}
+	watch(){
+		const emitter = new Events();
+		
+		const watch = new Promise(resolve => setTimeout(() => {
+			resolve(this.webpack.watch({}, (error, stats) => {
+				const errors = this.get_errors(error, stats);
+	
+				if(errors.length){
+					emitter.emit('error', errors);
+				}else{
+					emitter.emit('bulit');
+				}
+			}));
+		}));
+
+		emitter.stop = async () => {
+			(await watch).close();
+		};
+
+		return emitter;
+	}
+};

@@ -1,7 +1,11 @@
 import './index.css';
-import { tomp_config } from '../Config.mjs';
 
-const boot = new TOMPBoot(tomp_config);
+const boot = new TOMPBoot({
+	noscript: false,
+	bare: BARE_DIRECTORY,
+	loglevel: 0, // LOG_TRACE
+});
+
 const search = new TOMPBoot.SearchBuilder('https://searx.ru/search?q=%s');
 
 const form = document.querySelector('.main');
