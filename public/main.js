@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const boot = new TOMPBoot({
 	noscript: false,
-	bare: undefined,
+	bare: "/bare/",
 	loglevel: 0, // LOG_TRACE
 });
 

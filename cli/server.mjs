@@ -15,7 +15,7 @@ export default function({ errors, tompDirectory, bareDirectory, host, port }){
 	
 	{
 		const builder_folder = join(public_dir);
-		const builder = new FrontendBuilder(builder_folder);
+		const builder = new FrontendBuilder(builder_folder, bareDirectory, tompDirectory);
 		console.info('Created frontend builder on folder:', builder_folder);
 		
 		const emitter = builder.watch();
