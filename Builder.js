@@ -28,7 +28,7 @@ export default class Builder {
 		this.webpack = webpack({
 			mode: 'development',
 			devtool: 'source-map',
-			entry: join(__dirname, 'assets', 'index.mjs'),
+			entry: join(__dirname, 'assets', 'index.js'),
 			context: __dirname,
 			output: {
 				path: output,

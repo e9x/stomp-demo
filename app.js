@@ -1,6 +1,6 @@
 import { Argument, Command, Option } from 'commander';
-import build from './cli/build.mjs';
-import server from './cli/server.mjs';
+import build from './cli/build.js';
+import server from './cli/server.js';
 
 const program = new Command();
 

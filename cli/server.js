@@ -3,9 +3,9 @@ import { fileURLToPath } from 'node:url';
 import { Server as HTTPServer } from 'node:http';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
-import BareServer from '../../bare-server-node/Server.mjs';
-import TOMPBuilder from '../../toomanyproxies/Builder.mjs';
-import FrontendBuilder from '../Builder.mjs';
+import BareServer from 'bare-server-node';
+import TOMPBuilder from 'toomanyproxies';
+import FrontendBuilder from '../Builder.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

@@ -25,12 +25,14 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"dependencies": {
+		"bare-server-node": "github:tomphttp/bare-server-node",
 		"commander": "^9.0.0",
 		"css-loader": "^6.5.1",
 		"fastify": "^3.25.3",
 		"fastify-static": "^4.5.0",
 		"html-webpack-plugin": "^5.5.0",
 		"mini-css-extract-plugin": "^2.4.6",
+		"toomanyproxies": "github:tomphttp/toomanyproxies",
 		"webpack": "^5.65.0"
 	}
 }

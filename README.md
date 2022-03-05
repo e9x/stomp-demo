@@ -14,36 +14,20 @@ Documentation for tests and other features can be found in [the wiki](https://gi
 
 ### Quickstart
 
-1. Clone the required repositories locally
+1. Clone the repository
 ```sh
-git clone https:/github.com/tomphttp/bare-server-node.git
-git clone https:/github.com/tomphttp/toomanyproxies.git
 git clone https:/github.com/tomphttp/toomanyproxies-frontend.git
+cd toomanyproxies-frontend
 ```
 
-2. Install dependencies for each repository
+2. Install dependencies
 ```sh
-cd bare-server-node
 npm install
-cd ..
-
-cd toomanyproxies
-npm install
-cd ..
-
-cd toomanyproxies-frontend
-npm install
-cd ..
-```
-
-3. Enter the frontend repository (Again)
-```sh
-cd toomanyproxies-frontend
 ```
 
 4. Start the server
 ```sh
-node ./app.mjs --port 80 --host localhost
+npm start --port 80 --host localhost
 ```
 
 ### TLS
