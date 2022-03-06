@@ -10,7 +10,7 @@ import FrontendBuilder from '../Builder.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export default function({ errors, tompDirectory, bareDirectory, host, port }){
+export default function({ errors, tompDirectory, bareDirectory, host, port, skipBare }){
 	const public_dir = join(__dirname, '..', 'public');
 	
 	{
@@ -52,10 +52,6 @@ export default function({ errors, tompDirectory, bareDirectory, host, port }){
 			console.log('Successfully built TOMP');
 		});
 	}
-	
-	const bare = new BareServer(bareDirectory, errors);
-	console.info('Created Bare Server on directory:', bareDirectory);
-	console.info('Error logging is', errors ? 'enabled.' : 'disabled.');
 	
 	const http = new HTTPServer();
 	console.info('Created HTTP server.');
@@ -100,15 +96,28 @@ export default function({ errors, tompDirectory, bareDirectory, host, port }){
 		},
 	});
 	
-	http.on('request', (req, res) => {
-		if(bare.route_request(req, res))return;
-		fastify_handler(req, res);
-	});
+		
+	if(skipBare){
+		console.info('Skipping creation of Bare Server. External Bare Server:', bareDirectory);
+
+		http.on('request', fastify_handler);
+	}else{
+		const bare = new BareServer(bareDirectory, errors);
+		console.info('Created Bare Server on directory:', bareDirectory);
+		console.info('Error logging is', errors ? 'enabled.' : 'disabled.');
+
+		http.on('request', (req, res) => {
+			if(bare.route_request(req, res))return;
+			fastify_handler(req, res);
+		});
+		
+		http.on('upgrade', (req, socket, head) => {
+			if(bare.route_upgrade(req, socket, head))return;
+			socket.end();
+		});
+	}
+
 	
-	http.on('upgrade', (req, socket, head) => {
-		if(bare.route_upgrade(req, socket, head))return;
-		socket.end();
-	});
 	
 	fastify.listen(port, host, (error, url) => {
 		if(error){

@@ -11,7 +11,8 @@ program
 .addOption(new Option('--td, --tomp-directory <URL>', 'TOMP directory').default('/tomp/'))
 .addOption(new Option('--h, --host <string>', 'Listening host').default('localhost'))
 .addOption(new Option('--p, --port <number>', 'Listening port').default(80).env('PORT'))
-.addOption(new Option('--e, --errors', 'Error logging').default(false))
+.addOption(new Option('--e, --errors', 'Error logging'))
+.addOption(new Option('--skip-bare', 'Skip creating a Bare Server, bare-directory may be on a different URL'))
 .action(server)
 ;
 
