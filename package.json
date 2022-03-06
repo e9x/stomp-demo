@@ -33,6 +33,6 @@
 		"html-webpack-plugin": "^5.5.0",
 		"mini-css-extract-plugin": "^2.4.6",
 		"toomanyproxies": "github:tomphttp/toomanyproxies",
-		"webpack": "^5.65.0"
+		"webpack": "^5.70.0"
 	}
 }
