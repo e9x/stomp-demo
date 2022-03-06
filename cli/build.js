@@ -28,6 +28,7 @@ export default async function(output, { bare, tomp, watch }){
 		try{
 			await builder.build();
 			console.log('Success');
+			process.exit();
 		}catch(err){
 			for(let error of [].concat(err)){
 				console.error(error);	

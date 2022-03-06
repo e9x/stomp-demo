@@ -21,6 +21,7 @@ program
 .argument('<output>', 'Location for static HTML files', undefined, 'tompfrontend')
 .addOption(new Option('--bd, --bare <URL>', 'Bare server').default('/bare/'))
 .addOption(new Option('--td, --tomp <URL>', 'TOMP directory').default('/tomp/'))
+.addOption(new Option('--w, --watch', 'Watch filesystem for updates'))
 .action(build)
 ;
 
