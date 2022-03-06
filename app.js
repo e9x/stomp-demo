@@ -18,7 +18,7 @@ program
 program
 .command('build')
 .description('Build the frontend')
-.argument(new Argument('<output>', 'Location for static HTML files').default('tompfrontend'))
+.argument('<output>', 'Location for static HTML files', undefined, 'tompfrontend')
 .addOption(new Option('--bd, --bare <URL>', 'Bare server').default('/bare/'))
 .addOption(new Option('--td, --tomp <URL>', 'TOMP directory').default('/tomp/'))
 .action(build)
