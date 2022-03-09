@@ -3,7 +3,8 @@ import './index.css';
 const boot = new TOMPBoot({
 	noscript: false,
 	bare: BARE_DIRECTORY,
-	loglevel: 0, // LOG_TRACE
+	loglevel: TOMPBoot.LOG_TRACE,
+	codec: TOMPBoot.CODEC_XOR,
 });
 
 const search = new TOMPBoot.SearchBuilder('https://searx.ru/search?q=%s');
