@@ -16,7 +16,7 @@ Documentation for tests and other features can be found in [the wiki](https://gi
 
 1. Clone the repository
 ```sh
-git clone https:/github.com/sysce/tomp-demo.git
+git clone https://github.com/sysce/tomp-demo.git
 cd tomp-demo
 ```
 
