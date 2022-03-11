@@ -1,6 +1,6 @@
-# TooManyProxies frontend
+# SystemYA TOMP Frontend
 
-This repository is an example of hosting a [Bare Server](https://github.com/tomphttp/specifications/tree/master/BareServer.md) ([Bare-Server-Node](https://github.com/tomphttp/bare-server-node)) and serving the compiled [TooManyProxies](https://github.com/tomphttp/toomanyproxies) source using [Fastify](https://github.com/fastify/fastify).
+This repository is an example of hosting a [Bare Server](https://github.com/tomphttp/specifications/tree/master/BareServer.md) ([Bare-Server-Node](https://github.com/tomphttp/bare-server-node)) and serving our [TOMP implementation](https://github.com/sysce/tomp) using [Fastify](https://github.com/fastify/fastify).
 
 ## Usage
 
@@ -10,14 +10,14 @@ For more features, specify the `--help` option when running the CLI.
 
 ## Wiki
 
-Documentation for tests and other features can be found in [the wiki](https://github.com/tomphttp/toomanyproxies-frontend/wiki).
+Documentation for tests and other features can be found in [the wiki](https://github.com/sysce/tomp-demo/wiki).
 
 ### Quickstart
 
 1. Clone the repository
 ```sh
-git clone https:/github.com/tomphttp/toomanyproxies-frontend.git
-cd toomanyproxies-frontend
+git clone https:/github.com/sysce/tomp-demo.git
+cd tomp-demo
 ```
 
 2. Install dependencies
