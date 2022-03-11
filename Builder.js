@@ -24,9 +24,11 @@ export default class Builder {
 
 		return errors;
 	}
-	constructor(output, bare, tomp){
+	constructor(output, bare, tomp, development){
+		const mode = development ? 'development' : 'production';
+
 		this.webpack = webpack({
-			mode: 'development',
+			mode,
 			devtool: 'source-map',
 			entry: join(__dirname, 'assets', 'index.js'),
 			context: __dirname,
@@ -38,6 +40,7 @@ export default class Builder {
 				new webpack.DefinePlugin({
 					BARE_DIRECTORY: JSON.stringify(bare),
 					TOMP_DIRECTORY: JSON.stringify(tomp),
+					PRODUCTION: JSON.stringify(!development),
 				}),
 				new HtmlWebpackPlugin({
 					template: join(__dirname, 'assets', 'index.ejs'),

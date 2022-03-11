@@ -4,18 +4,24 @@ import { Server as HTTPServer } from 'node:http';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
 import BareServer from 'bare-server-node';
-import TOMPBuilder from 'toomanyproxies';
+import TOMPBuilder from 'tomp';
 import FrontendBuilder from '../Builder.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export default function({ errors, tompDirectory, bareDirectory, host, port, skipBare }){
+export default function({ errors, tompDirectory, bareDirectory, host, port, skipBare, development }){
+	if(development){
+		console.log('Building in DEVELOPMENT mode');
+	}else{
+		console.log('Building in PRODUCTION mode');
+	}
+	
 	const public_dir = join(__dirname, '..', 'public');
 	
 	{
 		const builder_folder = join(public_dir);
-		const builder = new FrontendBuilder(builder_folder, bareDirectory, tompDirectory);
+		const builder = new FrontendBuilder(builder_folder, bareDirectory, tompDirectory, development);
 		console.info('Created frontend builder on folder:', builder_folder);
 		
 		const emitter = builder.watch();
@@ -35,7 +41,7 @@ export default function({ errors, tompDirectory, bareDirectory, host, port, skip
 	
 	{
 		const builder_folder = join(public_dir, tompDirectory);
-		const builder = new TOMPBuilder(builder_folder);
+		const builder = new TOMPBuilder(builder_folder, development);
 		console.info('Created TOMP builder on folder:', builder_folder);
 		
 		const emitter = builder.watch();

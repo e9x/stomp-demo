@@ -1,11 +1,19 @@
 import './index.css';
 
-const boot = new TOMPBoot({
+const config = {
 	noscript: false,
 	bare: BARE_DIRECTORY,
-	loglevel: TOMPBoot.LOG_TRACE,
-	codec: TOMPBoot.CODEC_XOR,
-});
+};
+
+if(PRODUCTION){
+	config.loglevel = TOMPBoot.LOG_ERROR;
+	config.codec = TOMPBoot.CODEC_XOR;
+}else{
+	config.loglevel = TOMPBoot.LOG_TRACE;
+	config.codec = TOMPBoot.CODEC_PLAIN;
+}
+
+const boot = new TOMPBoot(config);
 
 const search = new TOMPBoot.SearchBuilder('https://searx.ru/search?q=%s');
 

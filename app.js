@@ -1,6 +1,10 @@
-import { Argument, Command, Option } from 'commander';
+import { Command, Option } from 'commander';
+import gracefs from 'graceful-fs';
 import build from './cli/build.js';
 import server from './cli/server.js';
+import fs from 'node:fs';
+
+gracefs.gracefulify(fs);
 
 const program = new Command();
 
@@ -13,6 +17,7 @@ program
 .addOption(new Option('--p, --port <number>', 'Listening port').default(80).env('PORT'))
 .addOption(new Option('--e, --errors', 'Error logging'))
 .addOption(new Option('--skip-bare', 'Skip creating a Bare Server, bare-directory may be on a different URL'))
+.addOption(new Option('--development', 'Verbose scripts, skip minification'))
 .action(server)
 ;
 
@@ -23,6 +28,7 @@ program
 .addOption(new Option('--bd, --bare <URL>', 'Bare server').default('/bare/'))
 .addOption(new Option('--td, --tomp <URL>', 'TOMP directory').default('/tomp/'))
 .addOption(new Option('--w, --watch', 'Watch filesystem for updates'))
+.addOption(new Option('--development', 'If TOMP should be configured to be more verbose and if code should be minified.'))
 .action(build)
 ;
 

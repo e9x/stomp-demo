@@ -1,5 +1,5 @@
 {
-	"name": "toomanyproxies-frontend",
+	"name": "tomp-demo",
 	"description": "Back.",
 	"version": "0.0.1",
 	"homepage": "https://github.com/tomphttp",
@@ -30,9 +30,11 @@
 		"css-loader": "^6.5.1",
 		"fastify": "^3.25.3",
 		"fastify-static": "^4.5.0",
+		"graceful-fs": "^4.2.9",
 		"html-webpack-plugin": "^5.5.0",
 		"mini-css-extract-plugin": "^2.4.6",
-		"toomanyproxies": "github:tomphttp/toomanyproxies",
+		"tomp": "github:sysce/tomp",
+		"toomanyproxies": "github:sysce/tomp",
 		"webpack": "^5.70.0"
 	}
 }
