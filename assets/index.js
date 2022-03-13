@@ -1,7 +1,6 @@
 import './index.css';
 
 const config = {
-	noscript: false,
 	bare: BARE_DIRECTORY,
 	directory: TOMP_DIRECTORY,
 };
