@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import HtmlWebpackPlugin  from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'node:url';
@@ -9,22 +9,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default class Builder {
-	get_errors(error, stats){
+	get_errors(error, stats) {
 		const errors = [];
-		
-		if(error){
+
+		if (error) {
 			errors.push(error);
 		}
-		
-		if(typeof stats == 'object' && stats !== undefined && stats !== null){
-			for(let error of stats.compilation.errors){
+
+		if (typeof stats == 'object' && stats !== undefined && stats !== null) {
+			for (let error of stats.compilation.errors) {
 				errors.push(error);
 			}
 		}
 
 		return errors;
 	}
-	constructor(output, bare, tomp, development){
+	constructor(output, bare, tomp, development) {
 		const mode = development ? 'development' : 'production';
 
 		this.webpack = webpack({
@@ -45,48 +45,49 @@ export default class Builder {
 				new HtmlWebpackPlugin({
 					template: join(__dirname, 'assets', 'index.ejs'),
 				}),
-				new MiniCssExtractPlugin()
+				new MiniCssExtractPlugin(),
 			],
 			module: {
 				rules: [
 					{
 						test: /\.css$/,
-						use: [
-							MiniCssExtractPlugin.loader,
-							'css-loader',
-						],
+						use: [MiniCssExtractPlugin.loader, 'css-loader'],
 					},
 				],
 			},
 		});
 	}
-	build(){
+	build() {
 		return new Promise((resolve, reject) => {
 			this.webpack.run((error, stats) => {
 				const errors = this.get_errors(error, stats);
-	
-				if(errors.length){
+
+				if (errors.length) {
 					reject(errors);
-				}else{
+				} else {
 					resolve();
 				}
 			});
 		});
 	}
-	watch(){
+	watch() {
 		const emitter = new Events();
-		
-		const watch = new Promise(resolve => setTimeout(() => {
-			resolve(this.webpack.watch({}, (error, stats) => {
-				const errors = this.get_errors(error, stats);
-	
-				if(errors.length){
-					emitter.emit('error', errors);
-				}else{
-					emitter.emit('bulit');
-				}
-			}));
-		}));
+
+		const watch = new Promise(resolve =>
+			setTimeout(() => {
+				resolve(
+					this.webpack.watch({}, (error, stats) => {
+						const errors = this.get_errors(error, stats);
+
+						if (errors.length) {
+							emitter.emit('error', errors);
+						} else {
+							emitter.emit('bulit');
+						}
+					})
+				);
+			})
+		);
 
 		emitter.stop = async () => {
 			(await watch).close();
@@ -94,4 +95,4 @@ export default class Builder {
 
 		return emitter;
 	}
-};
+}

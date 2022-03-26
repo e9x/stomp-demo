@@ -36,5 +36,16 @@
 		"tomp": "github:sysce/tomp",
 		"toomanyproxies": "github:sysce/tomp",
 		"webpack": "^5.70.0"
+	},
+	"devDependencies": {
+		"husky": "^7.0.4",
+		"lint-staged": "^12.3.7",
+		"prettier": "2.6.0"
+	},
+	"lint-staged": {
+		"*.{js,json}": "prettier --write"
+	},
+	"scripts": {
+		"prepare": "husky install"
 	}
 }

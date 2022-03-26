@@ -5,10 +5,10 @@ const config = {
 	directory: TOMP_DIRECTORY,
 };
 
-if(PRODUCTION){
+if (PRODUCTION) {
 	config.loglevel = TOMPBoot.LOG_ERROR;
 	config.codec = TOMPBoot.CODEC_XOR;
-}else{
+} else {
 	config.loglevel = TOMPBoot.LOG_TRACE;
 	config.codec = TOMPBoot.CODEC_PLAIN;
 }
@@ -27,7 +27,7 @@ boot.ready.catch(error => {
 
 form.addEventListener('submit', async event => {
 	event.preventDefault();
-	
+
 	await boot.ready;
 
 	location.assign(boot.html(search.query(input.value)));

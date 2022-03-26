@@ -15,17 +15,20 @@ Documentation for tests and other features can be found in [the wiki](https://gi
 ### Quickstart
 
 1. Clone the repository
+
 ```sh
 git clone https://github.com/sysce/tomp-demo.git
 cd tomp-demo
 ```
 
 2. Install dependencies
+
 ```sh
 npm install
 ```
 
 4. Start the server
+
 ```sh
 npm start --port 80 --host localhost
 ```
@@ -35,6 +38,7 @@ npm start --port 80 --host localhost
 In the cloned repository (See [quickstart](#quickstart))
 
 1. Generate OpenSSL certificates (Unless you're bringing your own)
+
 ```sh
 mkdir tls
 openssl genrsa -out tls/key.pem
@@ -43,6 +47,7 @@ openssl x509 -req -days 9999 -in tls/csr.pem -signkey tls/key.pem -out tls/cert.
 ```
 
 2. Start the server
+
 ```sh
 node ./app.js --port 443 --host localhost --tls --cert tls/cert.pem --key tls/key.pem
 ```
