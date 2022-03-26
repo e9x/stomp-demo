@@ -1,10 +1,6 @@
 import { Command, Option } from 'commander';
-import gracefs from 'graceful-fs';
 import build from './cli/build.js';
 import server from './cli/server.js';
-import fs from 'node:fs';
-
-gracefs.gracefulify(fs);
 
 const program = new Command();
 
