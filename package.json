@@ -1,5 +1,5 @@
 {
-	"name": "tomp-demo",
+	"name": "stomp-demo",
 	"description": "Back.",
 	"version": "0.0.1",
 	"homepage": "https://github.com/tomphttp",
@@ -32,7 +32,7 @@
 		"fastify-static": "^4.5.0",
 		"html-webpack-plugin": "^5.5.0",
 		"mini-css-extract-plugin": "^2.4.6",
-		"tomp": "github:sysce/tomp",
+		"stomp": "github:sysce/stomp",
 		"toomanyproxies": "github:sysce/tomp",
 		"webpack": "^5.70.0"
 	},

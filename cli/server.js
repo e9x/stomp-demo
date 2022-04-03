@@ -4,7 +4,7 @@ import { Server as HTTPServer } from 'node:http';
 import FastifyServer from 'fastify';
 import FastifyStatic from 'fastify-static';
 import BareServer from 'bare-server-node';
-import TOMPBuilder from 'tomp';
+import TOMPBuilder from 'stomp';
 import FrontendBuilder from '../Builder.js';
 
 const __filename = fileURLToPath(import.meta.url);
