@@ -12,7 +12,7 @@ const __dirname = dirname(__filename);
 
 export default function ({
 	errors,
-	tompDirectory,
+	stompDirectory,
 	bareDirectory,
 	host,
 	port,
@@ -32,7 +32,7 @@ export default function ({
 		const builder = new FrontendBuilder(
 			builder_folder,
 			bareDirectory,
-			tompDirectory,
+			stompDirectory,
 			development
 		);
 		console.info('Created frontend builder on folder:', builder_folder);
@@ -53,7 +53,7 @@ export default function ({
 	}
 
 	{
-		const builder_folder = join(public_dir, tompDirectory);
+		const builder_folder = join(public_dir, stompDirectory);
 		const builder = new TOMPBuilder(builder_folder, development);
 		console.info('Created TOMP builder on folder:', builder_folder);
 

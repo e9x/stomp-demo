@@ -2,7 +2,7 @@ import Builder from '../Builder.js';
 import { cwd } from 'node:process';
 import { resolve } from 'node:path';
 
-export default async function (output, { bare, tomp, watch, development }) {
+export default async function (output, { bare, stomp, watch, development }) {
 	if (development) {
 		console.log('Building in DEVELOPMENT mode');
 	} else {
@@ -11,7 +11,7 @@ export default async function (output, { bare, tomp, watch, development }) {
 
 	output = resolve(cwd(), output);
 
-	const builder = new Builder(output, bare, tomp, development);
+	const builder = new Builder(output, bare, stomp, development);
 	console.info('Created builder on folder:', output);
 
 	if (watch) {

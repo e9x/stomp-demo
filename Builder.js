@@ -24,7 +24,7 @@ export default class Builder {
 
 		return errors;
 	}
-	constructor(output, bare, tomp, development) {
+	constructor(output, bare, stomp, development) {
 		const mode = development ? 'development' : 'production';
 
 		this.webpack = webpack({
@@ -39,7 +39,7 @@ export default class Builder {
 			plugins: [
 				new webpack.DefinePlugin({
 					BARE_DIRECTORY: JSON.stringify(bare),
-					TOMP_DIRECTORY: JSON.stringify(tomp),
+					STOMP_DIRECTORY: JSON.stringify(stomp),
 					PRODUCTION: JSON.stringify(!development),
 				}),
 				new HtmlWebpackPlugin({

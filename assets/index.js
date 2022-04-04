@@ -2,20 +2,20 @@ import './index.css';
 
 const config = {
 	bare: BARE_DIRECTORY,
-	directory: TOMP_DIRECTORY,
+	directory: STOMP_DIRECTORY,
 };
 
 if (PRODUCTION) {
-	config.loglevel = TOMPBoot.LOG_ERROR;
-	config.codec = TOMPBoot.CODEC_XOR;
+	config.loglevel = StompBoot.LOG_ERROR;
+	config.codec = StompBoot.CODEC_XOR;
 } else {
-	config.loglevel = TOMPBoot.LOG_TRACE;
-	config.codec = TOMPBoot.CODEC_PLAIN;
+	config.loglevel = StompBoot.LOG_TRACE;
+	config.codec = StompBoot.CODEC_PLAIN;
 }
 
-const boot = new TOMPBoot(config);
+const boot = new StompBoot(config);
 
-const search = new TOMPBoot.SearchBuilder('https://searx.ru/search?q=%s');
+const search = new StompBoot.SearchBuilder('https://searx.ru/search?q=%s');
 
 const form = document.querySelector('.main');
 const input = document.querySelector('.main > input');

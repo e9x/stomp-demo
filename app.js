@@ -13,8 +13,8 @@ program
 		)
 	)
 	.addOption(
-		new Option('--td, --tomp-directory <URL>', 'TOMP directory').default(
-			'/tomp/'
+		new Option('--sd, --stomp-directory <URL>', 'Stomp directory').default(
+			'/stomp/'
 		)
 	)
 	.addOption(
@@ -44,7 +44,7 @@ program
 	)
 	.addOption(new Option('--bd, --bare <URL>', 'Bare server').default('/bare/'))
 	.addOption(
-		new Option('--td, --tomp <URL>', 'TOMP directory').default('/tomp/')
+		new Option('--sd, --stomp <URL>', 'Stomp directory').default('/tomp/')
 	)
 	.addOption(new Option('--w, --watch', 'Watch filesystem for updates'))
 	.addOption(
