@@ -1,7 +1,7 @@
 import './index.css';
 
 const config = {
-	bare: BARE_DIRECTORY,
+	bare_server: BARE_DIRECTORY,
 	directory: STOMP_DIRECTORY,
 };
 
