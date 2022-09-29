@@ -22,28 +22,19 @@
 		"tomphttp",
 		"sys32"
 	],
-	"license": "GPL-3.0",
+	"license": "GPLv3",
 	"type": "module",
 	"dependencies": {
-		"bare-server-node": "github:tomphttp/bare-server-node",
-		"commander": "^9.0.0",
-		"css-loader": "^6.5.1",
-		"fastify": "^3.25.3",
-		"fastify-static": "^4.5.0",
-		"html-webpack-plugin": "^5.5.0",
-		"mini-css-extract-plugin": "^2.4.6",
-		"stomp": "github:sysce/stomp",
-		"webpack": "^5.70.0"
+		"@sysce/stomp": "^1.0.0",
+		"serve-static": "^1.15.0"
 	},
 	"devDependencies": {
-		"husky": "^7.0.4",
-		"lint-staged": "^12.3.7",
+		"@tomphttp/bare-server-node": "^1.1.0",
+		"commander": "^9.0.0",
+		"eslint": "^8.23.1",
 		"prettier": "2.6.0"
 	},
-	"lint-staged": {
-		"*.{js,json}": "prettier --write"
-	},
 	"scripts": {
-		"prepare": "husky install"
+		"start": "node scripts/start.js"
 	}
 }
