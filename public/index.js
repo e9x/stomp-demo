@@ -1,16 +1,14 @@
-import './index.css';
-
 const config = {
-	bare_server: BARE_DIRECTORY,
-	directory: STOMP_DIRECTORY,
+	bare_server: '/bare/',
+	directory: '/stomp/',
 };
 
-if (PRODUCTION) {
-	config.loglevel = StompBoot.LOG_ERROR;
-	config.codec = StompBoot.CODEC_XOR;
-} else {
+if (location.protocol === 'http:') {
 	config.loglevel = StompBoot.LOG_TRACE;
 	config.codec = StompBoot.CODEC_PLAIN;
+} else {
+	config.loglevel = StompBoot.LOG_ERROR;
+	config.codec = StompBoot.CODEC_XOR;
 }
 
 const boot = new StompBoot(config);
@@ -19,16 +17,13 @@ const search = new StompBoot.SearchBuilder('https://searx.ru/search?q=%s');
 
 const form = document.querySelector('.main');
 const input = document.querySelector('.main > input');
-const error_node = document.querySelector('.error');
+const errorNode = document.querySelector('.error');
 
 boot.ready.catch(error => {
-	error_node.textContent = error.toString();
+	errorNode.textContent = error.toString();
 });
 
-form.addEventListener('submit', async event => {
+form.addEventListener('submit', event => {
 	event.preventDefault();
-
-	await boot.ready;
-
-	location.assign(boot.html(search.query(input.value)));
+	boot.ready.then(() => location.assign(boot.html(search.query(input.value))));
 });
