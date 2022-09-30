@@ -40,9 +40,8 @@ httpServer.on('request', (req, res) => {
 	if (bareServer.shouldRoute(req)) {
 		bareServer.routeRequest(req, res);
 	} else {
-		if (req.url.startsWith('/stomp/')) {
-			req.url = req.url.slice('/stomp/'.length);
-
+		if (req.url.startsWith('/stomp')) {
+			req.url = req.url.slice('/stomp'.length);
 			serveStomp(req, res, err => {
 				res.writeHead(err?.statusCode || 500, {
 					'Content-Type': 'text/plain',
