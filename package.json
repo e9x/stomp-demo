@@ -25,14 +25,14 @@
 	"license": "GPLv3",
 	"type": "module",
 	"dependencies": {
-		"@sysce/stomp": "^1.0.0",
+		"@sysce/stomp": "^1.0.1",
 		"express": "^4.18.2"
 	},
 	"devDependencies": {
-		"@tomphttp/bare-server-node": "^1.1.0",
-		"commander": "^9.0.0",
-		"eslint": "^8.23.1",
-		"prettier": "2.6.0"
+		"@tomphttp/bare-server-node": "^1.2.2",
+		"commander": "^9.4.1",
+		"eslint": "^8.31.0",
+		"prettier": "^2.8.1"
 	},
 	"scripts": {
 		"start": "node src/index.js"
