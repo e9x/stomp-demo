@@ -30,9 +30,9 @@
 	},
 	"devDependencies": {
 		"@tomphttp/bare-server-node": "^1.2.2",
-		"commander": "^9.4.1",
+		"commander": "^9.5.0",
 		"eslint": "^8.31.0",
-		"prettier": "^2.8.1"
+		"prettier": "^2.8.2"
 	},
 	"scripts": {
 		"start": "node src/index.js"
