@@ -25,7 +25,7 @@
 	"license": "GPLv3",
 	"type": "module",
 	"dependencies": {
-		"@sysce/stomp": "^1.0.1",
+		"@sysce/stomp": "^1.0.2",
 		"express": "^4.18.2"
 	},
 	"devDependencies": {

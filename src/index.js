@@ -1,8 +1,7 @@
 import createBareServer from '@tomphttp/bare-server-node';
 import express from 'express';
 import { createServer } from 'node:http';
-import stompPath from '@sysce/stomp';
-import { join } from 'node:path';
+import { stompPath } from '@sysce/stomp';
 import { hostname } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
