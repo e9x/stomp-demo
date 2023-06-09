@@ -25,11 +25,11 @@
 	"license": "GPLv3",
 	"type": "module",
 	"dependencies": {
-		"@sysce/stomp": "^1.0.2",
+		"@sysce/stomp": "^2.0.0-beta",
 		"express": "^4.18.2"
 	},
 	"devDependencies": {
-		"@tomphttp/bare-server-node": "^1.2.2",
+		"@tomphttp/bare-server-node": "^2.0.0-beta",
 		"commander": "^9.5.0",
 		"eslint": "^8.31.0",
 		"prettier": "^2.8.2"
